@@ -285,6 +285,11 @@ button {
   display: block;
 }
 
+.scramble-char {
+  color: var(--g-blue);
+  opacity: 0.6;
+}
+
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;

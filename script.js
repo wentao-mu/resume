@@ -16,9 +16,9 @@ const content = {
       resumeZh: "中文简历",
     },
     hero: {
-      kicker: "Georgia Tech · AI Engineering · Quantitative Systems",
-      titleLine1: "把模型、系统",
-      titleLine2: "与信号做成真实产品。",
+      kicker: "Progress and Service",
+      titleLine1: "欢迎来到我的个人主页",
+      titleLine2: "- 牟文韬",
       ctaPrimary: "联系我",
       ctaSecondary: "查看简历",
     },
@@ -169,9 +169,9 @@ const content = {
       resumeZh: "Chinese Resume",
     },
     hero: {
-      kicker: "Georgia Tech · AI Engineering · Quantitative Systems",
-      titleLine1: "Build models, systems,",
-      titleLine2: "and signals.",
+      kicker: "Progress and Service",
+      titleLine1: "Welcome to my homepage",
+      titleLine2: "- Wentao Mu",
       ctaPrimary: "Get in touch",
       ctaSecondary: "View resume",
     },
@@ -328,6 +328,63 @@ const langToggle = $("#lang-toggle");
 const keyNodes = $$("[data-key]");
 const navNodes = $$("[data-nav]");
 
+/* ─── Antigravity Scramble Effect ──────────────────────────── */
+class TextScrambler {
+  constructor(el) {
+    this.el = el;
+    this.chars = '!<>-_\\/[]{}—=+*^?#________';
+    this.update = this.update.bind(this);
+  }
+  setText(newText) {
+    const oldText = this.el.textContent;
+    const length = Math.max(oldText.length, newText.length);
+    const promise = new Promise((resolve) => (this.resolve = resolve));
+    this.queue = [];
+    for (let i = 0; i < length; i++) {
+      const from = oldText[i] || '';
+      const to = newText[i] || '';
+      const start = Math.floor(Math.random() * 40);
+      const end = start + Math.floor(Math.random() * 40);
+      this.queue.push({ from, to, start, end });
+    }
+    cancelAnimationFrame(this.frameRequest);
+    this.frame = 0;
+    this.update();
+    return promise;
+  }
+  update() {
+    let output = '';
+    let complete = 0;
+    for (let i = 0, n = this.queue.length; i < n; i++) {
+      let { from, to, start, end, char } = this.queue[i];
+      if (this.frame >= end) {
+        complete++;
+        output += to;
+      } else if (this.frame >= start) {
+        if (!char || Math.random() < 0.28) {
+          char = this.randomChar();
+          this.queue[i].char = char;
+        }
+        output += `<span class="scramble-char">${char}</span>`;
+      } else {
+        output += from;
+      }
+    }
+    this.el.innerHTML = output;
+    if (complete === this.queue.length) {
+      this.resolve();
+    } else {
+      this.frameRequest = requestAnimationFrame(this.update);
+      this.frame++;
+    }
+  }
+  randomChar() {
+    return this.chars[Math.floor(Math.random() * this.chars.length)];
+  }
+}
+
+let heroScrambler1, heroScrambler2;
+
 /* ─── Utils ────────────────────────────────────────────────── */
 function get(obj, path) {
   return path.split(".").reduce((acc, k) => acc?.[k], obj);
@@ -420,8 +477,20 @@ function setLanguage(lang) {
 
   // Static key nodes
   keyNodes.forEach(node => {
-    const val = get(dict, node.dataset.key);
-    if (typeof val === "string") node.textContent = val;
+    const key = node.dataset.key;
+    const val = get(dict, key);
+    if (typeof val === "string") {
+      // Hero headline uses scramble effect
+      if (key === "hero.titleLine1") {
+        if (!heroScrambler1) heroScrambler1 = new TextScrambler(node);
+        heroScrambler1.setText(val);
+      } else if (key === "hero.titleLine2") {
+        if (!heroScrambler2) heroScrambler2 = new TextScrambler(node);
+        heroScrambler2.setText(val);
+      } else {
+        node.textContent = val;
+      }
+    }
   });
 
   // Nav labels
