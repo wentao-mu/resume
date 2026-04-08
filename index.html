@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wentao Mou | Personal Website</title>
+  <meta name="description" content="Wentao Mou — AI engineering, applied research, and quantitative systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght@8..144,-10..0,75..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+  <!-- Confetti particle canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ─── Navigation ───────────────────────────────────────── -->
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#top">
+      <!-- Antigravity-style "A" logo mark -->
+      <svg class="brand-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 20h20L12 2z" fill="none" stroke="url(#logo-grad)" stroke-width="2" stroke-linejoin="round" />
+        <path d="M7 14h10" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round" />
+        <defs>
+          <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#4285f4" />
+            <stop offset="33%" stop-color="#ea4335" />
+            <stop offset="66%" stop-color="#fbbc04" />
+            <stop offset="100%" stop-color="#34a853" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="brand-name">Wentao Mou</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a data-nav="about" href="#about">About</a>
+      <a data-nav="experience" href="#experience">Experience</a>
+      <a data-nav="research" href="#research">Research</a>
+      <a data-nav="skills" href="#skills">Skills</a>
+      <a data-nav="contact" href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">
+        <span data-ui="langLabel">EN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── Main ─────────────────────────────────────────────── -->
+  <main id="top">
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║           HERO               ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="hero">
+      <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <p class="hero-kicker" data-key="hero.kicker"></p>
+        <h1 class="hero-headline">
+          <span data-key="hero.titleLine1"></span>
+          <span data-key="hero.titleLine2"></span>
+        </h1>
+        <div class="hero-ctas">
+          <a class="btn btn-dark" href="mailto:wmou6@gatech.edu" data-key="hero.ctaPrimary"></a>
+          <a class="btn btn-ghost" href="./resume.pdf" target="_blank" rel="noreferrer"
+            data-key="hero.ctaSecondary"></a>
+        </div>
+        <div class="hero-meta">
+          <span>wmou6@gatech.edu</span>
+          <span class="meta-sep">·</span>
+          <span>Atlanta / Shenyang</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║           VIDEO              ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="video-section reveal">
+      <div class="video-container">
+        <div class="video-placeholder">
+          <button class="play-button" aria-label="Play video">
+            <span class="play-icon"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║           ABOUT              ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section reveal" id="about">
+      <div class="ag-section-inner layout-split">
+        <div class="split-left">
+          <p class="section-tag" data-key="about.label"></p>
+          <h2 class="section-headline" data-key="about.title"></h2>
+        </div>
+        <div class="split-right">
+          <p class="section-body" data-key="about.copy"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║       FOCUS (CARDS)          ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section bg-off reveal">
+      <div class="ag-section-inner">
+        <p class="section-tag" data-key="focus.label"></p>
+        <div class="focus-grid" id="focus-grid"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║          METRICS             ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section reveal">
+      <div class="ag-section-inner">
+        <p class="section-tag" data-key="metrics.label"></p>
+        <div class="metrics-grid" id="metrics-grid"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║        EXPERIENCE            ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section bg-off reveal" id="experience">
+      <div class="ag-section-inner">
+        <div class="section-intro">
+          <p class="section-tag" data-key="experience.label"></p>
+          <h2 class="section-headline-lg" data-key="experience.title"></h2>
+        </div>
+        <div class="timeline" id="experience-list"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║          RESEARCH            ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section reveal" id="research">
+      <div class="ag-section-inner">
+        <div class="section-intro">
+          <p class="section-tag" data-key="research.label"></p>
+          <h2 class="section-headline-lg" data-key="research.title"></h2>
+        </div>
+        <div class="project-list" id="research-list"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║         EDUCATION            ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section bg-off reveal">
+      <div class="ag-section-inner">
+        <div class="section-intro">
+          <p class="section-tag" data-key="education.label"></p>
+          <h2 class="section-headline-lg" data-key="education.title"></h2>
+        </div>
+        <div class="edu-grid" id="education-list"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║           BEYOND             ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section reveal">
+      <div class="ag-section-inner layout-split">
+        <div class="split-left">
+          <p class="section-tag" data-key="beyond.label"></p>
+          <h2 class="section-headline" data-key="beyond.title"></h2>
+        </div>
+        <div class="split-right">
+          <p class="section-body" data-key="beyond.copy"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║           SKILLS             ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section bg-off reveal" id="skills">
+      <div class="ag-section-inner">
+        <div class="section-intro">
+          <p class="section-tag" data-key="skills.label"></p>
+          <h2 class="section-headline-lg" data-key="skills.title"></h2>
+        </div>
+        <div class="skills-grid" id="skills-groups"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════╗ -->
+    <!-- ║           CONTACT            ║ -->
+    <!-- ╚══════════════════════════════╝ -->
+    <section class="ag-section contact-section reveal" id="contact">
+      <div class="ag-section-inner">
+        <p class="section-tag" data-key="contact.label"></p>
+        <h2 class="contact-headline" data-key="contact.title"></h2>
+        <p class="section-body contact-body" data-key="contact.copy"></p>
+        <div class="hero-ctas">
+          <a class="btn btn-dark" href="mailto:wmou6@gatech.edu" data-key="contact.ctaPrimary"></a>
+          <a class="btn btn-ghost" href="./resume.pdf" target="_blank" rel="noreferrer"
+            data-key="contact.ctaSecondary"></a>
+          <a class="btn btn-ghost" href="./中文简历.pdf" target="_blank" rel="noreferrer"
+            data-key="contact.ctaTertiary"></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║           FOOTER             ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <p class="footer-tagline" data-key="footer.tagline"></p>
+        <div class="footer-links">
+          <div class="footer-col">
+            <a href="mailto:wmou6@gatech.edu">wmou6@gatech.edu</a>
+            <a href="./resume.pdf" target="_blank" rel="noreferrer" data-key="footer.resume"></a>
+            <a href="./中文简历.pdf" target="_blank" rel="noreferrer" data-key="footer.resumeZh"></a>
+          </div>
+          <div class="footer-col">
+            <a href="#about" data-nav="about">About</a>
+            <a href="#experience" data-nav="experience">Experience</a>
+            <a href="#research" data-nav="research">Research</a>
+          </div>
+          <div class="footer-col">
+            <a href="#skills" data-nav="skills">Skills</a>
+            <a href="#contact" data-nav="contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <!-- Massive wordmark like Antigravity footer -->
+      <div class="footer-wordmark" aria-hidden="true">Wentao</div>
+      <div class="footer-bottom">
+        <span>Georgia Institute of Technology</span>
+        <div class="footer-legal">
+          <span>Atlanta, GA</span>
+          <span>·</span>
+          <span>Shenyang, China</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
